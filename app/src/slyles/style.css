@@ -1,0 +1,102 @@
+@import "../../node_modules/normalize.css/normalize.css";
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #222552;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+}
+
+.visually-hidden {
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    margin: -1px;
+}
+
+.movies-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-gap: 20px;
+    list-style-type: none;
+    margin-bottom: 32px;
+}
+
+.movies-list > li {
+	max-width: fit-content;
+    position: relative;
+    background-color: #3e4270;
+    border-radius: 3px;
+}
+
+.movies-list > li img {
+    max-width: 100%;
+}
+
+.movies-list > li h2 {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    padding: 5px 20px;
+    color: #ffffff;
+}
+
+.pagination {
+    display: flex;
+    max-width: 30%;
+    min-width: 280px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border-radius: 40px;
+    justify-content: center;
+    list-style: none;
+    background-color: #3e4270;
+    color: #ffffff;
+    font-size: 26px;
+    line-height: 30px;
+}
+
+.page-btn {
+    width: 50px;
+}
+
+.page__btn--prev {
+    margin-right: 16px;
+}
+
+.page__btn--next {
+    margin-left: 16px;
+}
+
+.page__item {
+    width: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.page__item--current {
+    background-color: #ffffff;
+    color: #3e4270;
+    border-radius: 50%;
+}
+
+
+
