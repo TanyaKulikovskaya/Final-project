@@ -6,19 +6,23 @@ const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
 const moviesList = document.querySelector('.movies-list');
 
+const sort = document.querySelector('.select-sort');
+const pagination = document.querySelector('.pagination');
+
 window.onload = () => {
   showApp();
 };
 
-async function showApp(page) {
+async function showApp(page = 1) {
   const total = 20; // limit of pages
-  const data = await fetchMovies('popularity.desc', page);
+  const sortby = sort.value;
+  const data = await fetchMovies(sortby, page);
   displayPagesList(data.page, createPagesList(data.page, total), total);
   displayMovies(data.results);
 }
 
-async function fetchMovies(sortby = 'popularity.desc', page = 1) {
-  const url = `${API_URL}?api_key=${API_KEY}&language=en-US&sort_by=${sortby}&page=${page}`;
+async function fetchMovies(sortby, page) {
+  const url = `${API_URL}?&vote_count.gte=1000&api_key=${API_KEY}&language=en-US&sort_by=${sortby}&page=${page}`;
   const response = await fetch(url);
   const data = await response.json();
   return data;
@@ -41,19 +45,19 @@ function displayMovies(movies) {
   });
 }
 
-const pagination = document.querySelector('.pagination');
+sort.addEventListener('change', () => {
+  const current = document.querySelector('.page__item--current');
+  showApp(current.innerHTML);
+});
 
 document.addEventListener('click', (e) => {
   if (e.target && e.target.classList.contains('page__btn--next')) {
     const current = document.querySelector('.page__item--current');
-    pagination.innerHTML = '';
     showApp(+current.innerHTML + 1);
   } else if (e.target && e.target.classList.contains('page__btn--prev')) {
     const current = document.querySelector('.page__item--current');
-    pagination.innerHTML = '';
     showApp(+current.innerHTML - 1);
   } else if (e.target && e.target.classList.contains('page__item')) {
-    pagination.innerHTML = '';
     showApp(e.target.innerHTML);
   }
 });
@@ -78,11 +82,13 @@ function createPagesList(page, total) {
 }
 
 function displayPagesList(page, arr, total) {
+  pagination.innerHTML = '';
   if (page !== 1) {
     const prev = document.createElement('li');
     prev.className = 'page__btn page__btn--prev';
     prev.innerHTML = 'prev';
     pagination.appendChild(prev);
+    window.scrollTo(0, 0);
   }
   for (let i = 0; i < arr.length; i += 1) {
     const pageItem = document.createElement('li');
@@ -93,11 +99,13 @@ function displayPagesList(page, arr, total) {
     }
     pageItem.innerHTML = arr[i];
     pagination.appendChild(pageItem);
+    window.scrollTo(0, 0);
   }
   if (page !== total) {
     const next = document.createElement('li');
     next.className = 'page__btn page__btn--next';
     next.innerHTML = 'next';
     pagination.appendChild(next);
+    window.scrollTo(0, 0);
   }
 }

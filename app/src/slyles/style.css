@@ -1,5 +1,12 @@
 @import "../../node_modules/normalize.css/normalize.css";
 
+:root {
+    --primary: #444e65;
+    --dark-primary: #2f3c4a;
+    --light-primary: #5b748e;
+    --white: #f8f7f7;
+}
+
 *,
 *::before,
 *::after {
@@ -10,7 +17,8 @@
 
 body {
     height: 100vh;
-    background-color: #222552;
+    background-color: var(--dark-primary);
+    font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
 .wrapper {
@@ -43,7 +51,7 @@ body {
 .movies-list > li {
 	max-width: fit-content;
     position: relative;
-    background-color: #3e4270;
+    background-color: var(--primary);
     border-radius: 3px;
 }
 
@@ -53,10 +61,10 @@ body {
 
 .movies-list > li h2 {
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 500;
     text-align: center;
     padding: 5px 20px;
-    color: #ffffff;
+    color: var(--white);
 }
 
 .pagination {
@@ -68,9 +76,9 @@ body {
     border-radius: 40px;
     justify-content: center;
     list-style: none;
-    background-color: #3e4270;
-    color: #ffffff;
-    font-size: 26px;
+    background-color: var(--light-primary);
+    color: var(--white);
+    font-size: 22px;
     line-height: 30px;
 }
 
@@ -93,10 +101,51 @@ body {
 }
 
 .page__item--current {
-    background-color: #ffffff;
-    color: #3e4270;
+    background-color: var(--white);
+    color: var(--light-primary);
     border-radius: 50%;
 }
+
+.sort {
+    position: relative;
+    display: flex;
+    width: 15em;
+    height: 2.5em;
+    line-height: 2.5;
+    border-radius: 4px;
+    margin-bottom: 18px;
+}
+
+.sort::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: var(--primary);
+    color: var(--white);
+    cursor: pointer;
+    pointer-events: none;
+}
+  
+.select-sort {
+    appearance: none;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    flex: 1;
+    background: var(--light-primary);
+    color: var(--white);
+    padding: 0 .6em;
+    line-height: inherit;
+    font-weight: 500;
+	cursor: pointer;
+}
+
+.select-sort::-ms-expand {
+	display: none;
+}
+
 
 
 
