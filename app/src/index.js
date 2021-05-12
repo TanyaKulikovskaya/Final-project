@@ -94,7 +94,6 @@ function displayPagesList(page, arr, total) {
     prev.className = 'page__btn page__btn--prev';
     prev.innerHTML = 'prev';
     pagination.appendChild(prev);
-    window.scrollTo(0, 0);
   }
   for (let i = 0; i < arr.length; i += 1) {
     const pageItem = document.createElement('li');
@@ -105,15 +104,14 @@ function displayPagesList(page, arr, total) {
     }
     pageItem.innerHTML = arr[i];
     pagination.appendChild(pageItem);
-    window.scrollTo(0, 0);
   }
   if (page !== total) {
     const next = document.createElement('li');
     next.className = 'page__btn page__btn--next';
     next.innerHTML = 'next';
     pagination.appendChild(next);
-    window.scrollTo(0, 0);
   }
+  window.scrollTo(0, 0);
 }
 
 moviesList.addEventListener('click', (e) => {
@@ -165,7 +163,7 @@ function displayMovie(movie) {
 function getGenres(genresArr) {
   let genres = '';
   genresArr.forEach((el) => {
-    genres += `<li>${el.name}</li>`;
+    genres += `<li>${el.name}</li> `;
   });
   return genres;
 }
