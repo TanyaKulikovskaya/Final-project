@@ -10,12 +10,17 @@ const moviesList = document.querySelector('.movies-list');
 const movieSection = document.querySelector('.movie');
 const movieContent = document.querySelector('.movie-content');
 
+const homeLink = document.querySelector('.header__link');
 const sort = document.querySelector('.select-sort');
 const pagination = document.querySelector('.pagination');
 
 window.onload = () => {
   showApp();
 };
+
+homeLink.addEventListener('click', () => {
+  window.location = window.location.href;
+});
 
 async function showApp(page = 1) {
   const total = 20; // limit of pages
