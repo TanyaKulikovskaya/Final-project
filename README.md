@@ -1,4 +1,4 @@
-# Final-project
+# Movie-App
 
 Movie app built using JavaScript and MovieDB API
 
